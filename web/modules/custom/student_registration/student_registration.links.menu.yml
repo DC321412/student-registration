@@ -1,0 +1,20 @@
+student_registration.register_menu:
+  title: 'Student Registration'
+  description: 'Register as a new student'
+  route_name: student_registration.register
+  menu_name: main
+  weight: 1
+
+student_registration.directory_menu:
+  title: 'Student Directory'
+  description: 'View list of registered students'
+  url: 'internal:/students'
+  menu_name: main
+  weight: 2
+
+student_registration.admin_menu:
+  title: 'Manage Records'
+  description: 'Administrative student content management'
+  url: 'internal:/admin/content'
+  menu_name: main
+  weight: 3

@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - node
+id: student_pattern
+label: 'Student URL Pattern'
+type: 'canonical_entities:node'
+pattern: 'students/[node:field_first_name]-[node:field_last_name]'
+selection_criteria:
+  c024c297-efc8-4207-b86f-e2ea4ffde84a:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: c024c297-efc8-4207-b86f-e2ea4ffde84a
+    context_mapping:
+      node: node
+    bundles:
+      student: student
+selection_logic: and
+weight: 0
+relationships: { }
+

@@ -1,0 +1,23 @@
+student_registration.home:
+  path: '/home'
+  defaults:
+    _controller: '\Drupal\student_registration\Controller\HomeController::build'
+    _title: 'Student Registration Management System'
+  requirements:
+    _permission: 'access content'
+
+student_registration.register:
+  path: '/student-registration'
+  defaults:
+    _form: '\Drupal\student_registration\Form\StudentRegistrationForm'
+    _title: 'Student Registration'
+  requirements:
+    _permission: 'register as student'
+
+student_registration.register_alias:
+  path: '/student/register'
+  defaults:
+    _form: '\Drupal\student_registration\Form\StudentRegistrationForm'
+    _title: 'Student Registration'
+  requirements:
+    _permission: 'register as student'

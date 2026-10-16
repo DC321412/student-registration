@@ -1,0 +1,11 @@
+uuid: dd76966e-1752-4de6-a181-9caddec9bd9a
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: AhjCZw17QjodiWhzYoxKun92bgc8PnSXb8bb_U5RWao
+name: Course
+vid: course
+description: 'Academic courses offered to students'
+weight: 0
+new_revision: false

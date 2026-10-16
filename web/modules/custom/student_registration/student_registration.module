@@ -1,0 +1,158 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for the Student Registration module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function student_registration_theme($existing, $type, $theme, $path) {
+  return [
+    'student_registration_form' => [
+      'render element' => 'form',
+      'template' => 'student-registration-form',
+      'path' => $path . '/templates',
+    ],
+    'student_home_page' => [
+      'variables' => [
+        'stats' => [],
+        'recent_students' => [],
+        'departments' => [],
+      ],
+      'template' => 'student-home-page',
+      'path' => $path . '/templates',
+    ],
+    'node__student__full' => [
+      'base hook' => 'node',
+      'template' => 'node--student--full',
+      'path' => $path . '/templates',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function student_registration_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Alter student registration form.
+  if ($form_id === 'student_registration_form') {
+    // Add disclaimer and privacy notice.
+    $form['privacy_notice'] = [
+      '#type' => 'item',
+      '#markup' => '<div class="student-privacy-notice"><small>'
+        . t('🔒 Privacy Notice: Information submitted is confidential and used solely for university enrollment and administrative purposes.')
+        . '</small></div>',
+      '#weight' => 99,
+    ];
+  }
+
+  // Alter Node Add / Edit form for Student content type in Drupal Admin.
+  if (in_array($form_id, ['node_student_form', 'node_student_edit_form'])) {
+    $form['admin_student_notice'] = [
+      '#type' => 'markup',
+      '#markup' => '<div class="messages messages--warning" style="margin-bottom: 1.5rem;">'
+        . '<strong>' . t('Administrator Notice:') . '</strong> '
+        . t('You are managing official student records. Ensure email and phone information are verified.')
+        . '</div>',
+      '#weight' => -100,
+    ];
+
+    // Enhance field descriptions in administrative form.
+    if (isset($form['field_student_email']['widget'][0]['value'])) {
+      $form['field_student_email']['widget'][0]['value']['#description'] = t('Official university communication will be sent to this email address.');
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function student_registration_entity_insert(EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'student') {
+    /** @var \Drupal\node\NodeInterface $entity */
+    $email = $entity->get('field_student_email')->value ?? 'N/A';
+    $name = $entity->getTitle();
+    \Drupal::logger('student_registration')->notice('New student enrolled: @name (Node ID: @nid, Email: @email)', [
+      '@name' => $name,
+      '@nid' => $entity->id(),
+      '@email' => $email,
+    ]);
+  }
+}
+
+/**
+ * Prepares variables for the student registration form template.
+ *
+ * Implements template_preprocess_student_registration_form().
+ */
+function template_preprocess_student_registration_form(&$variables) {
+  $form = $variables['form'];
+  $variables['intro'] = $form['intro'] ?? [];
+  $variables['first_name'] = $form['first_name'] ?? [];
+  $variables['last_name'] = $form['last_name'] ?? [];
+  $variables['email'] = $form['email'] ?? [];
+  $variables['phone'] = $form['phone'] ?? [];
+  $variables['department'] = $form['department'] ?? [];
+  $variables['course'] = $form['course'] ?? [];
+  $variables['photo'] = $form['photo'] ?? [];
+  $variables['privacy_notice'] = $form['privacy_notice'] ?? [];
+  $variables['actions'] = $form['actions'] ?? [];
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function student_registration_preprocess_node(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  if ($node->bundle() === 'student') {
+    // Attach styling library.
+    $variables['#attached']['library'][] = 'student_registration/general';
+
+    // Prepare custom variables for Twig template.
+    $first_name = $node->get('field_first_name')->value ?? '';
+    $last_name = $node->get('field_last_name')->value ?? '';
+    $variables['student_full_name'] = trim($first_name . ' ' . $last_name) ?: $node->getTitle();
+    $variables['student_first_name'] = $first_name;
+    $variables['student_last_name'] = $last_name;
+    $variables['student_email'] = $node->get('field_student_email')->value ?? '';
+    $variables['student_phone'] = $node->get('field_phone_number')->value ?? '';
+
+    // Format registration date.
+    $created_timestamp = $node->getCreatedTime();
+    $variables['registration_date'] = \Drupal::service('date.formatter')->format($created_timestamp, 'custom', 'F j, Y');
+    $variables['registration_time'] = \Drupal::service('date.formatter')->format($created_timestamp, 'custom', 'g:i A');
+
+    // Retrieve Department Term Name.
+    $department_term = $node->get('field_department')->entity;
+    $variables['department_name'] = $department_term ? $department_term->label() : t('Not Assigned');
+
+    // Retrieve Course Term Name.
+    $course_term = $node->get('field_course')->entity;
+    $variables['course_name'] = $course_term ? $course_term->label() : t('Not Assigned');
+
+    // Determine badge theme class based on department.
+    $dep_clean = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '-', (string) $variables['department_name']));
+    $variables['department_badge_class'] = 'dept-badge-' . ($dep_clean ?: 'general');
+
+    // Format phone display.
+    $digits = preg_replace('/[^\d]/', '', (string) $variables['student_phone']);
+    if (strlen($digits) === 10) {
+      $variables['formatted_phone'] = sprintf('(%s) %s-%s', substr($digits, 0, 3), substr($digits, 3, 3), substr($digits, 6, 4));
+    }
+    else {
+      $variables['formatted_phone'] = $variables['student_phone'];
+    }
+
+    // Student ID code (e.g., STU-1000 + nid).
+    $variables['student_id_code'] = 'STU-' . str_pad($node->id(), 5, '0', STR_PAD_LEFT);
+  }
+}
+

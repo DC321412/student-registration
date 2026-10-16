@@ -1,0 +1,76 @@
+uuid: 34b5f369-3e97-4d2f-b605-330c10d6f33a
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.student.field_course
+    - field.field.node.student.field_department
+    - field.field.node.student.field_first_name
+    - field.field.node.student.field_last_name
+    - field.field.node.student.field_phone_number
+    - field.field.node.student.field_profile_photo
+    - field.field.node.student.field_student_email
+    - image.style.thumbnail
+    - node.type.student
+  module:
+    - image
+    - user
+_core:
+  default_config_hash: 2u_zwOxtcXUZrFOnTz0d984v8bDvprerCQcBtnLhaG4
+id: node.student.teaser
+targetEntityType: node
+bundle: student
+mode: teaser
+content:
+  field_course:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_department:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_first_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_last_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_profile_photo:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_phone_number: true
+  field_student_email: true

@@ -1,0 +1,95 @@
+{#
+/**
+ * @file
+ * Custom Twig template for the Student Registration Form.
+ *
+ * Available variables:
+ * - intro: Form introduction markup.
+ * - first_name: First name field render array.
+ * - last_name: Last name field render array.
+ * - email: Email address field render array.
+ * - phone: Phone number field render array.
+ * - department: Department select field render array.
+ * - course: Course select field render array.
+ * - photo: Managed file upload render array.
+ * - actions: Form actions (submit button, reset link).
+ * - privacy_notice: Privacy notice render array.
+ * - form: Full form array (for rendering tokens and hidden fields).
+ */
+#}
+<div class="student-registration-wrapper">
+  <div class="student-card student-form-container">
+    <div class="student-card-header">
+      <div class="student-badge-icon">🎓</div>
+      {{ intro }}
+    </div>
+
+    <div class="student-card-body">
+      {# Personal Information Section #}
+      <div class="form-section-title">
+        <span class="step-num">1</span>
+        <h3>{{ 'Personal Information'|t }}</h3>
+      </div>
+      <div class="student-form-grid student-two-col">
+        <div class="form-col">
+          {{ first_name }}
+        </div>
+        <div class="form-col">
+          {{ last_name }}
+        </div>
+      </div>
+
+      {# Contact Details Section #}
+      <div class="form-section-title">
+        <span class="step-num">2</span>
+        <h3>{{ 'Contact Details'|t }}</h3>
+      </div>
+      <div class="student-form-grid student-two-col">
+        <div class="form-col">
+          {{ email }}
+        </div>
+        <div class="form-col">
+          {{ phone }}
+        </div>
+      </div>
+
+      {# Academic Program Section #}
+      <div class="form-section-title">
+        <span class="step-num">3</span>
+        <h3>{{ 'Academic Program'|t }}</h3>
+      </div>
+      <div class="student-form-grid student-two-col">
+        <div class="form-col">
+          {{ department }}
+        </div>
+        <div class="form-col">
+          {{ course }}
+        </div>
+      </div>
+
+      {# Profile Photo Section #}
+      <div class="form-section-title">
+        <span class="step-num">4</span>
+        <h3>{{ 'Profile Photo'|t }}</h3>
+      </div>
+      <div class="student-photo-section">
+        {{ photo }}
+        <div id="student-photo-preview" class="student-photo-preview-box">
+          <span class="preview-placeholder">{{ 'Live photo preview will appear here'|t }}</span>
+        </div>
+      </div>
+
+      {# Privacy Notice #}
+      {{ privacy_notice }}
+
+      {# Form Actions #}
+      <div class="student-form-actions">
+        {{ actions }}
+      </div>
+
+      {# Render hidden form elements (CSRF token, form ID, form build ID) #}
+      {{ form|without('intro', 'first_name', 'last_name', 'email', 'phone', 'department', 'course', 'photo', 'actions', 'privacy_notice') }}
+    </div>
+  </div>
+</div>
+

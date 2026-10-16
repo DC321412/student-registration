@@ -1,0 +1,127 @@
+{#
+/**
+ * @file
+ * Custom Twig template for displaying full Student node details.
+ *
+ * Custom variables prepared in student_registration_preprocess_node():
+ * - student_full_name: Formatted full name of the student.
+ * - student_first_name: First name.
+ * - student_last_name: Last name.
+ * - student_email: Student email address.
+ * - student_phone: Raw phone number.
+ * - formatted_phone: Human-readable phone format.
+ * - department_name: Associated department term name.
+ * - course_name: Associated course term name.
+ * - department_badge_class: CSS badge class based on department.
+ * - registration_date: Formatted registration date.
+ * - registration_time: Formatted registration time.
+ * - student_id_code: Unique student code (e.g., STU-00001).
+ * - content.field_profile_photo: Profile photo render array.
+ */
+#}
+<article{{ attributes.addClass('student-profile-page') }}>
+  <div class="student-profile-container">
+
+    {# Top Banner / Header Card #}
+    <div class="student-profile-hero">
+      <div class="student-profile-hero-content">
+        <div class="student-avatar-wrapper">
+          {% if content.field_profile_photo|render|trim is not empty %}
+            {{ content.field_profile_photo }}
+          {% else %}
+            <div class="student-avatar-fallback">
+              <span>{{ student_first_name|first|upper }}{{ student_last_name|first|upper }}</span>
+            </div>
+          {% endif %}
+        </div>
+        <div class="student-hero-meta">
+          <div class="student-id-pill">{{ student_id_code }}</div>
+          <h1 class="student-name">{{ student_full_name }}</h1>
+          <p class="student-tagline">
+            <span class="badge {{ department_badge_class }}">{{ department_name }}</span>
+            <span class="bullet-sep">•</span>
+            <span class="course-name-tag">{{ course_name }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {# Information Cards Grid #}
+    <div class="student-details-grid">
+      {# Academic Information Card #}
+      <div class="student-card detail-card">
+        <div class="detail-card-header">
+          <span class="card-icon">🏛️</span>
+          <h3>{{ 'Academic Information'|t }}</h3>
+        </div>
+        <div class="detail-card-body">
+          <div class="detail-item">
+            <span class="detail-label">{{ 'Department'|t }}</span>
+            <span class="detail-value font-semibold">
+              <span class="badge {{ department_badge_class }}">{{ department_name }}</span>
+            </span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">{{ 'Enrolled Course'|t }}</span>
+            <span class="detail-value font-semibold">{{ course_name }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">{{ 'Student ID'|t }}</span>
+            <span class="detail-value font-mono">{{ student_id_code }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">{{ 'Enrollment Status'|t }}</span>
+            <span class="detail-value"><span class="badge badge-success">{{ 'Active / Enrolled'|t }}</span></span>
+          </div>
+        </div>
+      </div>
+
+      {# Contact Details Card #}
+      <div class="student-card detail-card">
+        <div class="detail-card-header">
+          <span class="card-icon">📫</span>
+          <h3>{{ 'Contact Details'|t }}</h3>
+        </div>
+        <div class="detail-card-body">
+          <div class="detail-item">
+            <span class="detail-label">{{ 'Email Address'|t }}</span>
+            <span class="detail-value">
+              <a href="mailto:{{ student_email }}" class="contact-link email-link">
+                ✉️ {{ student_email }}
+              </a>
+            </span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">{{ 'Phone Number'|t }}</span>
+            <span class="detail-value">
+              <a href="tel:{{ student_phone }}" class="contact-link phone-link">
+                📞 {{ formatted_phone }}
+              </a>
+            </span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">{{ 'Registered On'|t }}</span>
+            <span class="detail-value">{{ registration_date }} at {{ registration_time }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {# Navigation and Action Bar #}
+    <div class="student-profile-actions">
+      <a href="{{ path('student_registration.register') }}" class="btn-student-secondary">
+        ← {{ 'Register Another Student'|t }}
+      </a>
+      <a href="/students" class="btn-student-secondary">
+        📋 {{ 'Student Directory'|t }}
+      </a>
+      {% if logged_in %}
+        <a href="/node/{{ node.id }}/edit" class="btn-student-secondary btn-admin-edit">
+          ✏️ {{ 'Edit Record'|t }}
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+</article>
+

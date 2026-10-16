@@ -1,0 +1,13 @@
+register as student:
+  title: 'Register as a student'
+  description: 'Allows users to access and submit the student registration form.'
+
+view student directory:
+  title: 'View student directory'
+  description: 'Allows users to view the student directory and listing pages.'
+
+administer student registration:
+  title: 'Administer student registration system'
+  description: 'Full administrative access to manage student records and configuration.'
+  restrict access: true
+

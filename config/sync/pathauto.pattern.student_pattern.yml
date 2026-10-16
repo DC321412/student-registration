@@ -1,0 +1,26 @@
+uuid: ab7e77c3-f2e6-4e62-a0ec-a9c3b9cccde1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.student
+  module:
+    - node
+_core:
+  default_config_hash: 6Xm4IZZYl4OLHXtislsJl8QQFiRTMw9aal-iJqFGvYY
+id: student_pattern
+label: 'Student URL Pattern'
+type: 'canonical_entities:node'
+pattern: '/students/[node:field_first_name]-[node:field_last_name]'
+selection_criteria:
+  c024c297-efc8-4207-b86f-e2ea4ffde84a:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      student: student
+    uuid: c024c297-efc8-4207-b86f-e2ea4ffde84a
+selection_logic: and
+weight: 0
+relationships: {  }

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course
+    - node.type.student
+    - taxonomy.vocabulary.course
+id: node.student.field_course
+field_name: field_course
+entity_type: node
+bundle: student
+label: 'Course'
+description: 'Enrolled academic course'
+required: true
+translatable: false
+default_value: { }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      course: course
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+field_type: entity_reference
+

@@ -1,0 +1,21 @@
+uuid: a35e4a56-7c63-471d-8de6-564a2bbd32d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_name
+    - node.type.student
+_core:
+  default_config_hash: IQKiJacPduZWNdO26cToHWkZWXmI9P5Lhi8YpXZRyDA
+id: node.student.field_last_name
+field_name: field_last_name
+entity_type: node
+bundle: student
+label: 'Last Name'
+description: 'Student last name'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

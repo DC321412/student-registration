@@ -1,0 +1,379 @@
+uuid: 853774a1-ad30-4aaa-8a56-243de0013cad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course
+    - field.storage.node.field_department
+    - field.storage.node.field_phone_number
+    - field.storage.node.field_profile_photo
+    - field.storage.node.field_student_email
+    - image.style.thumbnail
+    - node.type.student
+    - taxonomy.vocabulary.course
+    - taxonomy.vocabulary.department
+  module:
+    - image
+    - node
+    - student_registration
+    - taxonomy
+    - user
+id: student_directory
+label: 'Student Directory'
+module: student_registration
+description: 'Directory of enrolled students with department and course filters.'
+tag: default
+base_table: node_field_data
+base_field: nid
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'Student Directory'
+      fields:
+        field_profile_photo:
+          id: field_profile_photo
+          table: node__field_profile_photo
+          field: field_profile_photo
+          relationship: none
+          plugin_id: field
+          label: Photo
+          type: image
+          settings:
+            image_link: content
+            image_style: thumbnail
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          plugin_id: field
+          label: 'Student Name'
+          type: string
+          settings:
+            link_to_entity: true
+        field_student_email:
+          id: field_student_email
+          table: node__field_student_email
+          field: field_student_email
+          relationship: none
+          plugin_id: field
+          label: Email
+          type: basic_string
+        field_phone_number:
+          id: field_phone_number
+          table: node__field_phone_number
+          field: field_phone_number
+          relationship: none
+          plugin_id: field
+          label: Phone
+          type: string
+        field_department:
+          id: field_department
+          table: node__field_department
+          field: field_department
+          relationship: none
+          plugin_id: field
+          label: Department
+          type: entity_reference_label
+          settings:
+            link: false
+        field_course:
+          id: field_course
+          table: node__field_course
+          field: field_course
+          relationship: none
+          plugin_id: field
+          label: Course
+          type: entity_reference_label
+          settings:
+            link: false
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          plugin_id: field
+          label: 'Registered On'
+          type: timestamp
+          settings:
+            date_format: custom
+            custom_date_format: 'M j, Y'
+        operations:
+          id: operations
+          table: node
+          field: operations
+          relationship: none
+          plugin_id: entity_operations
+          label: Actions
+      pager:
+        type: full
+        options:
+          offset: 0
+          items_per_page: 10
+          total_pages: null
+          id: 0
+          tags:
+            next: 'Next ›'
+            previous: '‹ Previous'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+      exposed_form:
+        type: basic
+        options:
+          submit_button: 'Filter Students'
+          reset_button: true
+          reset_button_label: 'Reset Filters'
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Ascending
+          sort_desc_label: Descending
+      access:
+        type: perm
+        options:
+          perm: 'view student directory'
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          plugin_id: text
+          empty: true
+          content:
+            value: '<p class="empty-directory-msg">No students found matching your criteria. <a href="/student-registration">Register a student</a> to see them here.</p>'
+            format: basic_html
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          plugin_id: date
+          order: DESC
+          expose:
+            label: 'Registration Date'
+            field_identifier: created
+          exposed: true
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          plugin_id: standard
+          order: ASC
+          expose:
+            label: 'Student Name'
+            field_identifier: title
+          exposed: true
+      filters:
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          relationship: none
+          plugin_id: boolean
+          operator: '='
+          value: '1'
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          relationship: none
+          plugin_id: bundle
+          operator: in
+          value:
+            student: student
+          group: 1
+        field_department_target_id:
+          id: field_department_target_id
+          table: node__field_department
+          field: field_department_target_id
+          relationship: none
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          exposed: true
+          expose:
+            operator_id: field_department_target_id_op
+            label: Department
+            description: ''
+            use_operator: false
+            operator: field_department_target_id_op
+            identifier: department
+            required: false
+            remember: false
+            multiple: false
+            remember_roles: {  }
+            reduce: false
+          is_grouped: false
+          group_info: {  }
+          vid: department
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+        field_course_target_id:
+          id: field_course_target_id
+          table: node__field_course
+          field: field_course_target_id
+          relationship: none
+          plugin_id: taxonomy_index_tid
+          operator: or
+          value: {  }
+          exposed: true
+          expose:
+            operator_id: field_course_target_id_op
+            label: Course
+            description: ''
+            use_operator: false
+            operator: field_course_target_id_op
+            identifier: course
+            required: false
+            remember: false
+            multiple: false
+            remember_roles: {  }
+            reduce: false
+          is_grouped: false
+          group_info: {  }
+          vid: course
+          type: select
+          hierarchy: false
+          limit: true
+          error_message: true
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          columns:
+            field_profile_photo: field_profile_photo
+            title: title
+            field_student_email: field_student_email
+            field_phone_number: field_phone_number
+            field_department: field_department
+            field_course: field_course
+            created: created
+            operations: operations
+          default: created
+          info:
+            field_profile_photo:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            title:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_student_email:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-medium
+            field_phone_number:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-low
+            field_department:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_course:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            created:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: priority-low
+            operations:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          override: true
+          sticky: false
+          summary: ''
+          empty_table: true
+          caption: ''
+          description: ''
+      row:
+        type: fields
+      display_extenders: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_course'
+        - 'config:field.storage.node.field_department'
+        - 'config:field.storage.node.field_phone_number'
+        - 'config:field.storage.node.field_profile_photo'
+        - 'config:field.storage.node.field_student_email'
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      display_extenders: {  }
+      path: students
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_course'
+        - 'config:field.storage.node.field_department'
+        - 'config:field.storage.node.field_phone_number'
+        - 'config:field.storage.node.field_profile_photo'
+        - 'config:field.storage.node.field_student_email'

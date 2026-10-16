@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: { }
+name: Course
+vid: course
+description: 'Academic courses offered to students'
+weight: 0
+

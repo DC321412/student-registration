@@ -1,0 +1,17 @@
+uuid: 7c41f996-39c0-4cff-b7ad-8e01080d6bba
+langcode: en
+status: true
+dependencies:
+  module:
+    - student_registration
+    - system
+_core:
+  default_config_hash: RlpJuQItIyLGDHwwxEkY9S3HvcBwq-o7hG3An_CCkks
+id: student
+label: Student
+weight: 4
+is_admin: false
+permissions:
+  - 'access content'
+  - 'register as student'
+  - 'view student directory'

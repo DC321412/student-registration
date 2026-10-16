@@ -1,0 +1,30 @@
+uuid: b04d8da6-c20f-4ef2-a7c6-4e365493ca24
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_department
+    - node.type.student
+    - taxonomy.vocabulary.department
+_core:
+  default_config_hash: mBKE7utCAHSfNouH-T_dkNotnVcSAuaiR_HOlrJySD8
+id: node.student.field_department
+field_name: field_department
+entity_type: node
+bundle: student
+label: Department
+description: 'Academic department the student belongs to'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      department: department
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+field_type: entity_reference

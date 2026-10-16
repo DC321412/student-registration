@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.student
+  module:
+    - node
+    - student_registration
+id: student_administrator
+label: 'Student Administrator'
+weight: 3
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content'
+  - 'access content overview'
+  - 'administer nodes'
+  - 'administer student registration'
+  - 'create student content'
+  - 'delete any student content'
+  - 'delete own student content'
+  - 'edit any student content'
+  - 'edit own student content'
+  - 'register as student'
+  - 'view student directory'
+  - 'view the administration theme'
+

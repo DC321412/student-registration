@@ -1,0 +1,204 @@
+{#
+/**
+ * @file
+ * Template for Student Registration Management System Homepage.
+ *
+ * Available variables:
+ * - stats: Array containing counts for students, departments, courses.
+ * - recent_students: List of recently registered students.
+ * - departments: List of departments with student counts and filter links.
+ */
+#}
+<div class="student-home-wrapper">
+
+  {# Hero Banner #}
+  <section class="home-hero-section">
+    <div class="home-hero-content">
+      <div class="home-hero-badge">
+        <span class="badge-dot"></span> {{ 'University Academic Portal • Academic Year 2026-2027'|t }}
+      </div>
+      <h1 class="home-hero-title">
+        {{ 'Student Registration'|t }} <span class="highlight-text">{{ 'Management System'|t }}</span>
+      </h1>
+      <p class="home-hero-subtitle">
+        {{ 'Welcome to the centralized university registration portal. Easily register new students with our multi-section Form API, browse the official student directory, and manage academic records.'|t }}
+      </p>
+
+      <div class="home-hero-actions">
+        <a href="{{ path('student_registration.register') }}" class="btn-hero-primary">
+          🎓 {{ 'Register New Student'|t }}
+        </a>
+        <a href="/students" class="btn-hero-secondary">
+          📋 {{ 'Explore Student Directory'|t }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {# Live Statistics Bar #}
+  <section class="home-stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">👥</div>
+        <div class="stat-info">
+          <span class="stat-number">{{ stats.students }}</span>
+          <span class="stat-label">{{ 'Enrolled Students'|t }}</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏛️</div>
+        <div class="stat-info">
+          <span class="stat-number">{{ stats.departments }}</span>
+          <span class="stat-label">{{ 'Academic Departments'|t }}</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📚</div>
+        <div class="stat-info">
+          <span class="stat-number">{{ stats.courses }}</span>
+          <span class="stat-label">{{ 'Specialized Courses'|t }}</span>
+        </div>
+      </div>
+      <div class="stat-card stat-status-card">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-info">
+          <span class="stat-number text-success">{{ 'Active'|t }}</span>
+          <span class="stat-label">{{ 'Registration Portal Status'|t }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {# Core Features Grid #}
+  <section class="home-features-section">
+    <div class="section-heading-center">
+      <span class="sub-badge">{{ 'System Highlights'|t }}</span>
+      <h2>{{ 'Key Features & Architecture'|t }}</h2>
+      <p>{{ 'Built with modern Drupal 11 architecture, Form API, taxonomy vocabularies, and views.'|t }}</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon-box">📝</div>
+        <h3>{{ 'Form API Registration'|t }}</h3>
+        <p>{{ 'Structured multi-step form with required field validation, email uniqueness checking, phone formatting, and secure image upload restrictions.'|t }}</p>
+        <a href="{{ path('student_registration.register') }}" class="feature-link">{{ 'Open Registration Form →'|t }}</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">🔍</div>
+        <h3>{{ 'Filterable Views Directory'|t }}</h3>
+        <p>{{ 'Dynamic Drupal Views directory equipped with real-time department and course exposed dropdown filters, column sorting, and pagination.'|t }}</p>
+        <a href="/students" class="feature-link">{{ 'Browse Student Directory →'|t }}</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">🏷️</div>
+        <h3>{{ 'Taxonomy Integration'|t }}</h3>
+        <p>{{ 'Structured taxonomy vocabularies for Departments and Courses seamlessly categorized and referenced across all student profiles.'|t }}</p>
+        <a href="/students" class="feature-link">{{ 'View Categorized Students →'|t }}</a>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">🛡️</div>
+        <h3>{{ 'Security & Permissions'|t }}</h3>
+        <p>{{ 'Role-based access control protecting student records, combined with Pathauto SEO-friendly clean URLs for all student profiles.'|t }}</p>
+        <a href="/admin/content" class="feature-link">{{ 'Administer Records →'|t }}</a>
+      </div>
+    </div>
+  </section>
+
+  {# Recently Registered Students #}
+  {% if recent_students is not empty %}
+    <section class="home-recent-section">
+      <div class="section-heading-between">
+        <div>
+          <span class="sub-badge">{{ 'Live Updates'|t }}</span>
+          <h2>{{ 'Recently Registered Students'|t }}</h2>
+        </div>
+        <a href="/students" class="view-all-link">{{ 'View Full Directory ({{ stats.students }}) →'|t }}</a>
+      </div>
+
+      <div class="recent-students-grid">
+        {% for student in recent_students %}
+          <div class="recent-student-card">
+            <div class="recent-card-top">
+              <div class="recent-avatar">
+                {% if student.photo_url %}
+                  <img src="{{ student.photo_url }}" alt="{{ student.full_name }}" />
+                {% else %}
+                  <span class="avatar-text">{{ student.initials }}</span>
+                {% endif %}
+              </div>
+              <div class="recent-meta">
+                <h4 class="recent-name">
+                  <a href="{{ student.url }}">{{ student.full_name }}</a>
+                </h4>
+                <span class="recent-date">Enrolled {{ student.date }}</span>
+              </div>
+            </div>
+
+            <div class="recent-card-body">
+              <div class="recent-badge-row">
+                <span class="badge {{ student.department_badge_class }}">{{ student.department }}</span>
+              </div>
+              <p class="recent-course">{{ student.course }}</p>
+            </div>
+
+            <div class="recent-card-footer">
+              <a href="{{ student.url }}" class="card-btn-view">
+                {{ 'View Profile →'|t }}
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {# Department Quick Filter Section #}
+  {% if departments is not empty %}
+    <section class="home-departments-section">
+      <div class="section-heading-center">
+        <span class="sub-badge">{{ 'Academic Programs'|t }}</span>
+        <h2>{{ 'Explore by Department'|t }}</h2>
+        <p>{{ 'Quickly access students enrolled in each academic faculty.'|t }}</p>
+      </div>
+
+      <div class="departments-grid">
+        {% for dep in departments %}
+          <a href="{{ dep.url }}" class="department-card-link">
+            <div class="dept-card">
+              <div class="dept-header">
+                <span class="dept-icon">🏛️</span>
+                <h4>{{ dep.name }}</h4>
+              </div>
+              <p class="dept-desc">{{ dep.description|striptags }}</p>
+              <div class="dept-footer">
+                <span class="dept-count"><strong>{{ dep.student_count }}</strong> {{ 'Students Enrolled'|t }}</span>
+                <span class="dept-arrow">→</span>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {# Enrollment Call to Action Card #}
+  <section class="home-cta-section">
+    <div class="cta-inner-card">
+      <div class="cta-content">
+        <h2>{{ 'Ready to Enroll a New Student?'|t }}</h2>
+        <p>{{ 'Fill out the official student registration form in just a couple minutes. Ensure you have the student’s contact information and optional profile photo ready.'|t }}</p>
+      </div>
+      <div class="cta-button-wrap">
+        <a href="{{ path('student_registration.register') }}" class="btn-cta-white">
+          📝 {{ 'Go to Registration Form'|t }}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+

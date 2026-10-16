@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - student_registration
+id: student
+label: 'Student'
+weight: 4
+is_admin: false
+permissions:
+  - 'access content'
+  - 'register as student'
+  - 'view student directory'
+

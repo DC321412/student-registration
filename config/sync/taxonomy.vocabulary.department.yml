@@ -1,0 +1,11 @@
+uuid: ff0e5057-37ba-4c2c-932f-e60ffbbf994d
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: HvEGclVqxp82YoC-QHa9MnISRH8_LbdGZ5wOGfpAX7c
+name: Department
+vid: department
+description: 'Academic departments for students'
+weight: 0
+new_revision: false

@@ -1,0 +1,14 @@
+uuid: 96dcba3b-9466-40cb-b178-f4df0777fa83
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.student_administrator
+  module:
+    - user
+id: user_add_role_action.student_administrator
+label: 'Add the Student Administrator role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: student_administrator

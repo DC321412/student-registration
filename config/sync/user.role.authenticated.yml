@@ -1,0 +1,23 @@
+uuid: 5be586c6-f935-4ed0-9b3e-5c1ef7e83b1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - file
+    - filter
+    - student_registration
+    - system
+_core:
+  default_config_hash: wkW7P5A53YhGmsgamrmTbfwpZrqdnPYiJdoAZQtdmJg
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access content'
+  - 'delete own files'
+  - 'register as student'
+  - 'use text format basic_html'
+  - 'view student directory'

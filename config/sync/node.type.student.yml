@@ -1,0 +1,20 @@
+uuid: fe298eaa-09fd-43f1-8291-c20845dad47a
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: 8V_rSQZ91XRcbfA6QYt4PTQsfG7WvJTPLgfUUBeoNFE
+name: Student
+type: student
+description: 'Holds registered student information including name, email, department, course, and photo.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

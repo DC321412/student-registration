@@ -1,0 +1,21 @@
+uuid: c72b633a-97e1-43dc-be0f-96188807ed10
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_student_email
+    - node.type.student
+_core:
+  default_config_hash: HqUDYpnOfozC_Bt0XqPNbdA7uxbDjFG4WpBfXxfBMCU
+id: node.student.field_student_email
+field_name: field_student_email
+entity_type: node
+bundle: student
+label: Email
+description: 'Official student email address'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

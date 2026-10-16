@@ -1,0 +1,21 @@
+uuid: 66917312-be3a-4288-99f2-c74b8d06cb69
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - filter
+    - student_registration
+    - system
+_core:
+  default_config_hash: Tus1ZTNXKIOnrennR1hnTbc7wUPBXHTUm5UdCpEhJSk
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
+  - 'register as student'
+  - 'use text format restricted_html'
+  - 'view student directory'

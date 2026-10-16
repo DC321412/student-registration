@@ -1,0 +1,14 @@
+name: 'Student Registration'
+type: module
+description: 'Provides student registration management system with Form API, taxonomy, views, hooks, twig templates, and permissions.'
+core_version_requirement: ^10 || ^11
+package: Custom
+dependencies:
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:image
+  - drupal:views
+  - drupal:telephone
+  - ctools:ctools
+  - pathauto:pathauto
+  - token:token

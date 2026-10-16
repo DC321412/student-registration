@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: { }
+name: Department
+vid: department
+description: 'Academic departments for students'
+weight: 0
+

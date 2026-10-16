@@ -1,0 +1,11 @@
+general:
+  version: 1.0
+  css:
+    theme:
+      css/student-registration.css: {}
+  js:
+    js/student-registration.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
