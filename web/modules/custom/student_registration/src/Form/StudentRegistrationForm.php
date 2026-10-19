@@ -4,9 +4,12 @@ namespace Drupal\student_registration\Form;
 
 use Drupal\Component\Utility\EmailValidatorInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\file\FileUsage\FileUsageInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\HtmlCommand;
+use Drupal\Core\Ajax\ReplaceCommand;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\FileUsage\FileUsageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -112,6 +115,7 @@ class StudentRegistrationForm extends FormBase {
       ],
     ];
 
+    // Email with real-time AJAX uniqueness check.
     $form['email'] = [
       '#type' => 'email',
       '#title' => $this->t('Email Address'),
@@ -122,6 +126,15 @@ class StudentRegistrationForm extends FormBase {
         'autocomplete' => 'email',
       ],
       '#description' => $this->t('A valid email address is required. You will receive updates here.'),
+      '#ajax' => [
+        'callback' => '::checkEmailAvailability',
+        'wrapper' => 'email-validation-wrapper',
+        'event' => 'change',
+        'progress' => [
+          'type' => 'throbber',
+        ],
+      ],
+      '#suffix' => '<div id="email-validation-wrapper" class="student-ajax-feedback"></div>',
     ];
 
     $form['phone'] = [
@@ -148,20 +161,38 @@ class StudentRegistrationForm extends FormBase {
         'class' => ['student-select'],
       ],
       '#description' => $this->t('Select your academic department.'),
+      '#ajax' => [
+        'callback' => '::updateCourseDropdown',
+        'wrapper' => 'course-dropdown-wrapper',
+        'event' => 'change',
+        'progress' => [
+          'type' => 'throbber',
+          'message' => $this->t('Loading courses...'),
+        ],
+      ],
     ];
 
-    // Load Course taxonomy terms.
-    $course_options = $this->getTaxonomyOptions('course');
+    // Determine selected department (from user input during AJAX or default).
+    $selected_department = $form_state->getValue('department');
+
+    // Dynamically filter course options based on the chosen department.
+    $course_options = $this->getCoursesByDepartment($selected_department);
+
     $form['course'] = [
       '#type' => 'select',
       '#title' => $this->t('Course'),
       '#options' => $course_options,
-      '#empty_option' => $this->t('- Select Course -'),
+      '#empty_option' => $selected_department ? $this->t('- Select Course -') : $this->t('- Select Department First -'),
       '#required' => TRUE,
+      '#disabled' => empty($selected_department),
       '#attributes' => [
         'class' => ['student-select'],
       ],
-      '#description' => $this->t('Select the primary course you are enrolling in.'),
+      '#prefix' => '<div id="course-dropdown-wrapper">',
+      '#suffix' => '</div>',
+      '#description' => $selected_department 
+        ? $this->t('Choose a specialized course offered by this department.') 
+        : $this->t('Please select a department above to view available courses.'),
     ];
 
     // Profile Photo upload with restrictions.
@@ -234,6 +265,135 @@ class StudentRegistrationForm extends FormBase {
       ]);
     }
     return $options;
+  }
+
+  /**
+   * Helper method to filter courses offered by a specific department.
+   *
+   * @param string|int|null $department_id
+   *   The selected department term ID.
+   *
+   * @return array
+   *   Filtered associative array of course ID => course name.
+   */
+  protected function getCoursesByDepartment($department_id) {
+    if (empty($department_id)) {
+      return [];
+    }
+
+    $all_courses = $this->getTaxonomyOptions('course');
+
+    // Mapping of department terms to relevant course titles.
+    $mapping = [
+      'Computer Science' => [
+        'Web Development & Architecture',
+        'Data Structures & Algorithms',
+        'Artificial Intelligence & Machine Learning',
+        'Cloud Computing & DevOps',
+      ],
+      'Information Technology' => [
+        'Cloud Computing & DevOps',
+        'Web Development & Architecture',
+        'Artificial Intelligence & Machine Learning',
+      ],
+      'Mechanical Engineering' => [
+        'Robotics & Embedded Systems',
+      ],
+      'Electrical Engineering' => [
+        'Robotics & Embedded Systems',
+        'Artificial Intelligence & Machine Learning',
+      ],
+      'Business Administration' => [
+        'Financial Accounting & Analysis',
+      ],
+    ];
+
+    try {
+      $dept_term = $this->entityTypeManager->getStorage('taxonomy_term')->load($department_id);
+      if ($dept_term && isset($mapping[$dept_term->label()])) {
+        $allowed_names = $mapping[$dept_term->label()];
+        $filtered = [];
+        foreach ($all_courses as $cid => $cname) {
+          if (in_array($cname, $allowed_names, TRUE)) {
+            $filtered[$cid] = $cname;
+          }
+        }
+        return $filtered;
+      }
+    }
+    catch (\Exception $e) {
+      // Return all courses as fallback.
+    }
+
+    return $all_courses;
+  }
+
+  /**
+   * AJAX callback to refresh the Course dropdown when Department changes.
+   *
+   * @param array $form
+   *   The rebuilt form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current form state.
+   *
+   * @return array
+   *   The render array for the course select element.
+   */
+  public function updateCourseDropdown(array &$form, FormStateInterface $form_state) {
+    // Simply returning the form element automatically replaces the element
+    // wrapped with the ID specified in #ajax['wrapper'].
+    return $form['course'];
+  }
+
+  /**
+   * AJAX callback for real-time email uniqueness verification.
+   *
+   * Demonstrates using AjaxResponse with commands.
+   *
+   * @param array $form
+   *   The form array.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current form state.
+   *
+   * @return \Drupal\Core\Ajax\AjaxResponse
+   *   An AjaxResponse containing the feedback HTML command.
+   */
+  public function checkEmailAvailability(array &$form, FormStateInterface $form_state) {
+    $response = new AjaxResponse();
+    $email = trim((string) $form_state->getValue('email'));
+
+    if (empty($email)) {
+      $response->addCommand(new HtmlCommand('#email-validation-wrapper', ''));
+      return $response;
+    }
+
+    if (!$this->emailValidator->isValid($email)) {
+      $markup = '<div class="ajax-feedback-msg text-warning" style="margin-top:0.4rem;font-size:0.85rem;color:var(--nexus-amber,#f59e0b);">'
+        . '⚠️ ' . $this->t('Please enter a valid email format.')
+        . '</div>';
+      $response->addCommand(new HtmlCommand('#email-validation-wrapper', $markup));
+      return $response;
+    }
+
+    // Query database for existing registered student with this email.
+    $existing = $this->entityTypeManager->getStorage('node')->loadByProperties([
+      'type' => 'student',
+      'field_student_email' => $email,
+    ]);
+
+    if (!empty($existing)) {
+      $markup = '<div class="ajax-feedback-msg text-error" style="margin-top:0.4rem;font-size:0.85rem;color:var(--nexus-rose,#f43f5e);font-weight:600;">'
+        . '❌ ' . $this->t('Email is already registered! Please use another or login.')
+        . '</div>';
+    }
+    else {
+      $markup = '<div class="ajax-feedback-msg text-success" style="margin-top:0.4rem;font-size:0.85rem;color:var(--nexus-emerald,#10b981);font-weight:600;">'
+        . '✓ ' . $this->t('Email is available for registration.')
+        . '</div>';
+    }
+
+    $response->addCommand(new HtmlCommand('#email-validation-wrapper', $markup));
+    return $response;
   }
 
   /**

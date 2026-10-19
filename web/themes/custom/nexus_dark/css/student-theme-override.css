@@ -87,6 +87,60 @@
   box-shadow: 0 0 12px rgba(0, 242, 254, 0.4) !important;
 }
 
+/* Form Inputs & Select Dropdowns */
+.student-input,
+.student-select,
+select.student-select,
+input.student-input {
+  background-color: var(--nexus-bg-input, rgba(10, 16, 30, 0.9)) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--nexus-border, rgba(255, 255, 255, 0.12)) !important;
+  border-radius: var(--nexus-radius-sm, 10px) !important;
+  padding: 0.85rem 1.15rem !important;
+  font-size: 0.95rem !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+  transition: all var(--nexus-transition-fast) !important;
+}
+
+.student-select,
+select.student-select {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2300f2fe'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 1rem center !important;
+  background-size: 1.15em !important;
+  padding-right: 2.75rem !important;
+  cursor: pointer !important;
+}
+
+.student-select option,
+select.student-select option {
+  background-color: #0b1120 !important;
+  color: #ffffff !important;
+  padding: 0.75rem !important;
+}
+
+.student-input:focus,
+.student-select:focus,
+select.student-select:focus,
+input.student-input:focus {
+  outline: none !important;
+  border-color: var(--nexus-cyan, #00f2fe) !important;
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+  background-color: rgba(14, 22, 40, 0.95) !important;
+}
+
+.student-select:disabled,
+select.student-select:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+  background-color: rgba(15, 23, 42, 0.5) !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  color: var(--nexus-text-dim, #64748b) !important;
+}
+
 .student-privacy-notice {
   background: rgba(0, 242, 254, 0.04);
   border: 1px solid rgba(0, 242, 254, 0.2);
@@ -102,6 +156,32 @@
   border: 1px dashed var(--nexus-border-light);
   border-radius: var(--nexus-radius-sm);
   padding: 1.25rem;
+}
+
+input[type="file"]::file-selector-button {
+  background: var(--nexus-grad-cyber) !important;
+  color: #030712 !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  border: none !important;
+  border-radius: var(--nexus-radius-full, 9999px) !important;
+  padding: 0.45rem 1.15rem !important;
+  margin-right: 0.85rem !important;
+  cursor: pointer !important;
+  transition: all var(--nexus-transition-normal) !important;
+  box-shadow: 0 2px 10px rgba(0, 242, 254, 0.3) !important;
+}
+
+input[type="file"]::file-selector-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(0, 242, 254, 0.5) !important;
+}
+
+.student-photo-preview-box {
+  background: rgba(10, 16, 30, 0.6) !important;
+  border: 1px dashed var(--nexus-border-light, rgba(255, 255, 255, 0.15)) !important;
+  border-radius: var(--nexus-radius-md, 14px) !important;
+  color: var(--nexus-text-dim) !important;
 }
 
 /* Student Profile Page (Node View) */
