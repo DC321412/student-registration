@@ -1,0 +1,56 @@
+{#
+/**
+ * @file
+ * Template for Student Stats & Telemetry Block.
+ *
+ * Available variables:
+ * - headline: Custom block headline from admin settings.
+ * - show_telemetry: Boolean flag to display live status pill.
+ * - show_cta: Boolean flag to display quick action buttons.
+ * - stats: Array containing counts for students, departments, courses.
+ */
+#}
+<div class="student-stats-block-wrapper nexus-card" style="padding: 1.75rem; margin-bottom: 2rem;">
+  <div class="block-top-bar" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+    <div style="display: flex; align-items: center; gap: 0.6rem;">
+      <span style="font-size: 1.4rem;">📊</span>
+      <h3 style="margin: 0; font-size: 1.15rem; color: #ffffff;">{{ headline|default('Academic System Telemetry'|t) }}</h3>
+    </div>
+
+    {% if show_telemetry %}
+      <div class="status-pill-header" style="font-size: 0.72rem; padding: 0.25rem 0.65rem;" title="{{ 'Live real-time telemetry active'|t }}">
+        <span class="pulse-dot"></span>
+        <span>{{ 'Online • 14ms'|t }}</span>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="block-stats-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--nexus-border); border-radius: 10px; padding: 0.85rem 1rem;">
+      <div style="font-size: 0.75rem; color: var(--nexus-text-dim); text-transform: uppercase; letter-spacing: 0.05em;">{{ 'Students'|t }}</div>
+      <div style="font-size: 1.6rem; font-weight: 800; color: #ffffff; font-family: var(--nexus-font-mono);">{{ stats.students }}</div>
+    </div>
+
+    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--nexus-border); border-radius: 10px; padding: 0.85rem 1rem;">
+      <div style="font-size: 0.75rem; color: var(--nexus-text-dim); text-transform: uppercase; letter-spacing: 0.05em;">{{ 'Departments'|t }}</div>
+      <div style="font-size: 1.6rem; font-weight: 800; color: var(--nexus-cyan); font-family: var(--nexus-font-mono);">{{ stats.departments }}</div>
+    </div>
+
+    <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--nexus-border); border-radius: 10px; padding: 0.85rem 1rem;">
+      <div style="font-size: 0.75rem; color: var(--nexus-text-dim); text-transform: uppercase; letter-spacing: 0.05em;">{{ 'Courses'|t }}</div>
+      <div style="font-size: 1.6rem; font-weight: 800; color: var(--nexus-violet); font-family: var(--nexus-font-mono);">{{ stats.courses }}</div>
+    </div>
+  </div>
+
+  {% if show_cta %}
+    <div style="display: flex; gap: 0.75rem; align-items: center; border-top: 1px solid var(--nexus-border); padding-top: 1.25rem;">
+      <a href="{{ path('student_registration.register') }}" class="btn-header-cta" style="padding: 0.5rem 1.1rem; font-size: 0.85rem;">
+        <span>🎓 {{ 'Register Student'|t }}</span>
+      </a>
+      <a href="/students" class="nexus-btn-secondary" style="padding: 0.5rem 1.1rem; font-size: 0.85rem;">
+        <span>📋 {{ 'Directory'|t }}</span>
+      </a>
+    </div>
+  {% endif %}
+</div>
+

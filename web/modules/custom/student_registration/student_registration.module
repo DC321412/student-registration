@@ -33,6 +33,16 @@ function student_registration_theme($existing, $type, $theme, $path) {
       'template' => 'node--student--full',
       'path' => $path . '/templates',
     ],
+    'student_stats_block' => [
+      'variables' => [
+        'headline' => '',
+        'show_telemetry' => TRUE,
+        'show_cta' => TRUE,
+        'stats' => [],
+      ],
+      'template' => 'student-stats-block',
+      'path' => $path . '/templates',
+    ],
   ];
 }
 
