@@ -1,0 +1,309 @@
+/**
+ * @file
+ * Futuristic Header and Navigation styling for Nexus Dark theme.
+ */
+
+.nexus-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nexus-header-height);
+  background: rgba(6, 9, 19, 0.78);
+  backdrop-filter: blur(20px) saturate(190%);
+  -webkit-backdrop-filter: blur(20px) saturate(190%);
+  border-bottom: 1px solid var(--nexus-border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  transition: all var(--nexus-transition-normal);
+}
+
+.nexus-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(0, 242, 254, 0.5) 30%, rgba(139, 92, 246, 0.5) 70%, transparent 95%);
+  pointer-events: none;
+}
+
+.nexus-header.scrolled {
+  background: rgba(5, 7, 15, 0.92);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 242, 254, 0.08);
+}
+
+.nexus-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+/* Brand / Logo */
+.nexus-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  position: relative;
+  z-index: 10;
+}
+
+.nexus-logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.15) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--nexus-transition-normal);
+}
+
+.nexus-logo-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--nexus-cyan);
+  stroke-width: 2;
+  transition: transform var(--nexus-transition-normal);
+}
+
+.nexus-brand-link:hover .nexus-logo-icon {
+  border-color: var(--nexus-cyan);
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.45);
+  transform: scale(1.05);
+}
+
+.nexus-brand-link:hover .nexus-logo-icon svg {
+  transform: rotate(15deg);
+}
+
+.nexus-brand-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.nexus-site-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  line-height: 1.1;
+}
+
+.nexus-site-title .title-accent {
+  background: var(--nexus-grad-cyber);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nexus-site-subtitle {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--nexus-text-dim);
+}
+
+/* Navigation Links */
+.nexus-nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nexus-nav-item {
+  position: relative;
+}
+
+.nexus-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.1rem;
+  color: var(--nexus-text-secondary);
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: var(--nexus-radius-full);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all var(--nexus-transition-fast);
+}
+
+.nexus-nav-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.nexus-nav-link.is-active,
+.nexus-nav-item.is-active .nexus-nav-link {
+  color: var(--nexus-cyan);
+  background: rgba(0, 242, 254, 0.08);
+  border-color: rgba(0, 242, 254, 0.3);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+}
+
+/* Header Utilities */
+.nexus-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-pill-header {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--nexus-radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--nexus-emerald);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn-header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1.25rem;
+  background: var(--nexus-grad-cyber);
+  color: #030712 !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: var(--nexus-radius-full);
+  box-shadow: 0 2px 14px rgba(0, 242, 254, 0.3);
+  text-decoration: none;
+  transition: all var(--nexus-transition-normal);
+}
+
+.btn-header-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(0, 242, 254, 0.5);
+}
+
+/* Mobile Toggle Hamburger */
+.nexus-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--nexus-border);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1002;
+}
+
+.nexus-mobile-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--nexus-text-main);
+  border-radius: 2px;
+  transition: all var(--nexus-transition-fast);
+}
+
+.nexus-mobile-toggle.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nexus-mobile-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nexus-mobile-toggle.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Drawer */
+.nexus-mobile-drawer {
+  position: fixed;
+  top: var(--nexus-header-height);
+  left: 0;
+  right: 0;
+  background: rgba(6, 9, 19, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--nexus-border);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transform: translateY(-120%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 999;
+}
+
+.nexus-mobile-drawer.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  color: var(--nexus-text-main);
+  font-size: 1rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
+  text-decoration: none;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.is-active {
+  background: rgba(0, 242, 254, 0.08);
+  border-color: var(--nexus-cyan);
+  color: var(--nexus-cyan);
+}
+
+@media (max-width: 900px) {
+  .nexus-nav-desktop,
+  .status-pill-header {
+    display: none;
+  }
+  .nexus-mobile-toggle {
+    display: flex;
+  }
+}
+

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - nexus_dark
+id: nexus_dark_messages
+theme: nexus_dark
+region: highlighted
+weight: -5
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }
+

@@ -1,0 +1,243 @@
+{#
+/**
+ * @file
+ * Nexus Dark page.html.twig template with futuristic header and footer.
+ */
+#}
+<div class="site-wrapper">
+
+  {# Futuristic Frosted Sticky Header #}
+  <header class="nexus-header" role="banner">
+    <div class="nexus-container nexus-header-inner">
+      
+      {# Brand / Logo #}
+      <a href="{{ front_page }}" class="nexus-brand-link" title="{{ 'Return to Homepage'|t }}">
+        <div class="nexus-logo-icon">
+          <svg viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <div class="nexus-brand-titles">
+          <span class="nexus-site-title">
+            STUDENT <span class="title-accent">// NEXUS</span>
+          </span>
+          <span class="nexus-site-subtitle">Academic Intelligence OS</span>
+        </div>
+      </a>
+
+      {# Desktop Navigation #}
+      <nav class="nexus-nav-wrapper" role="navigation" aria-label="{{ 'Main Navigation'|t }}">
+        {% if page.primary_menu %}
+          {{ page.primary_menu }}
+        {% else %}
+          <ul class="nexus-nav-desktop">
+            <li class="nexus-nav-item">
+              <a href="{{ url_home }}" class="nexus-nav-link {{ is_front ? 'is-active' : '' }}">
+                <span>{{ 'Home'|t }}</span>
+              </a>
+            </li>
+            <li class="nexus-nav-item">
+              <a href="{{ url_register }}" class="nexus-nav-link {{ current_path == '/student-registration' or current_path == '/student/register' ? 'is-active' : '' }}">
+                <span>{{ 'Registration'|t }}</span>
+              </a>
+            </li>
+            <li class="nexus-nav-item">
+              <a href="{{ url_directory }}" class="nexus-nav-link {{ current_path == '/students' ? 'is-active' : '' }}">
+                <span>{{ 'Directory'|t }}</span>
+              </a>
+            </li>
+            <li class="nexus-nav-item">
+              <a href="{{ url_admin_content }}" class="nexus-nav-link {{ current_path starts with '/admin' ? 'is-active' : '' }}">
+                <span>{{ 'Manage Records'|t }}</span>
+              </a>
+            </li>
+          </ul>
+        {% endif %}
+      </nav>
+
+      {# Header Actions #}
+      <div class="nexus-header-actions">
+        <div class="status-pill-header" title="{{ 'Real-time API connection stable'|t }}">
+          <span class="pulse-dot"></span>
+          <span>Online</span>
+        </div>
+
+        <a href="{{ url_register }}" class="btn-header-cta">
+          <span>{{ 'Enroll Student'|t }}</span>
+          <span aria-hidden="true">→</span>
+        </a>
+
+        {# Mobile Menu Hamburger #}
+        <button type="button" class="nexus-mobile-toggle" aria-label="{{ 'Toggle navigation menu'|t }}" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+    </div>
+
+    {# Optional Drupal Header Region #}
+    {% if page.header %}
+      <div class="nexus-header-region">
+        {{ page.header }}
+      </div>
+    {% endif %}
+  </header>
+
+  {# Mobile Navigation Drawer #}
+  <div class="nexus-mobile-drawer" role="dialog" aria-label="{{ 'Mobile Navigation'|t }}">
+    <ul class="mobile-nav-list">
+      <li>
+        <a href="{{ url_home }}" class="mobile-nav-link {{ is_front ? 'is-active' : '' }}">
+          <span>🏛️ {{ 'Home'|t }}</span>
+          <span>→</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_register }}" class="mobile-nav-link {{ current_path == '/student-registration' or current_path == '/student/register' ? 'is-active' : '' }}">
+          <span>🎓 {{ 'Student Registration'|t }}</span>
+          <span>→</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_directory }}" class="mobile-nav-link {{ current_path == '/students' ? 'is-active' : '' }}">
+          <span>📋 {{ 'Student Directory'|t }}</span>
+          <span>→</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_admin_content }}" class="mobile-nav-link {{ current_path starts with '/admin' ? 'is-active' : '' }}">
+          <span>🛡️ {{ 'Manage Records'|t }}</span>
+          <span>→</span>
+        </a>
+      </li>
+    </ul>
+
+    <div style="margin-top: 1rem;">
+      <a href="{{ url_register }}" class="nexus-btn-primary" style="width: 100%; text-align: center;">
+        🎓 {{ 'Register New Student'|t }}
+      </a>
+    </div>
+  </div>
+
+  {# Main Page Content Wrapper #}
+  <main id="main-content" class="site-main-content">
+    <div class="nexus-container">
+
+      {# Drupal System Messages / Highlighted Region #}
+      {% if page.highlighted %}
+        <div class="nexus-highlighted-region">
+          {{ page.highlighted }}
+        </div>
+      {% endif %}
+
+      {# Main Body Content #}
+      <div class="nexus-content-body">
+        {{ page.content }}
+      </div>
+
+      {# Optional Sidebar #}
+      {% if page.sidebar %}
+        <aside class="nexus-sidebar" role="complementary">
+          {{ page.sidebar }}
+        </aside>
+      {% endif %}
+
+    </div>
+  </main>
+
+  {# Futuristic Multi-Column Footer #}
+  <footer class="nexus-footer" role="contentinfo">
+    <div class="nexus-container">
+
+      <div class="nexus-footer-grid">
+
+        {# Col 1: Brand & Specs #}
+        <div class="footer-brand-col">
+          <a href="{{ front_page }}" class="footer-brand">
+            <div class="footer-logo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <span class="footer-brand-name">STUDENT // NEXUS</span>
+          </a>
+          <p class="footer-tagline">
+            {{ 'Next-generation university registration and academic records management platform. Built on modern Drupal 11 architecture.'|t }}
+          </p>
+          <div class="footer-status-badge">
+            <span class="pulse-dot"></span>
+            <span>All Systems Operational • Core 11.4</span>
+          </div>
+        </div>
+
+        {# Col 2: Academic Portal #}
+        <div class="footer-links-col">
+          <h4>{{ 'Academic Hub'|t }}</h4>
+          <ul class="footer-nav-list">
+            <li><a href="{{ url_register }}">🎓 {{ 'Student Registration'|t }}</a></li>
+            <li><a href="{{ url_directory }}">📋 {{ 'Student Directory'|t }}</a></li>
+            <li><a href="{{ url_home }}#departments">🏛️ {{ 'Academic Departments'|t }}</a></li>
+            <li><a href="{{ url_home }}#features">⚡ {{ 'System Highlights'|t }}</a></li>
+          </ul>
+        </div>
+
+        {# Col 3: Management #}
+        <div class="footer-links-col">
+          <h4>{{ 'Administration'|t }}</h4>
+          <ul class="footer-nav-list">
+            <li><a href="{{ url_admin_content }}">🛡️ {{ 'Manage Records'|t }}</a></li>
+            <li><a href="/admin/structure/taxonomy">🏷️ {{ 'Taxonomy Vocabularies'|t }}</a></li>
+            <li><a href="/admin/people/permissions">🔑 {{ 'Access & Permissions'|t }}</a></li>
+            <li><a href="/user/login">👤 {{ 'Administrator Login'|t }}</a></li>
+          </ul>
+        </div>
+
+        {# Col 4: Platform Architecture Tags #}
+        <div class="footer-links-col">
+          <h4>{{ 'Platform Engine'|t }}</h4>
+          <p style="font-size: 0.85rem; color: var(--nexus-text-muted); margin-bottom: 0.75rem;">
+            {{ 'High-performance headless-ready foundation with strict schema validation.'|t }}
+          </p>
+          <div class="footer-tech-tags">
+            <span class="tech-tag">Drupal 11.4</span>
+            <span class="tech-tag">Form API</span>
+            <span class="tech-tag">Views Engine</span>
+            <span class="tech-tag">SQLite</span>
+            <span class="tech-tag">Pathauto</span>
+            <span class="tech-tag">Role-Based Auth</span>
+          </div>
+        </div>
+
+      </div>
+
+      {# Optional Drupal Footer Region Blocks #}
+      {% if page.footer %}
+        <div class="nexus-footer-custom-blocks" style="margin-bottom: 2rem;">
+          {{ page.footer }}
+        </div>
+      {% endif %}
+
+      {# Footer Bottom Bar #}
+      <div class="nexus-footer-bottom">
+        <div>
+          © {{ current_year }} Student Nexus Academic Portal. {{ 'All Rights Reserved.'|t }}
+        </div>
+
+        <div class="footer-system-latency">
+          <span style="color: var(--nexus-cyan);">●</span> LATENCY: 14ms &nbsp;|&nbsp; CLOCK: {{ "now"|date("H:i") }} UTC
+        </div>
+
+        <div class="footer-bottom-links">
+          <a href="#">{{ 'Privacy Standard'|t }}</a>
+          <a href="#">{{ 'API Docs'|t }}</a>
+          <a href="#">{{ 'System Health'|t }}</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+

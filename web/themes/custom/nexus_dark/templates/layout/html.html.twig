@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Nexus Dark html.html.twig template with ambient interactive gradient mesh layer.
+ */
+#}
+{%
+  set body_classes = [
+    logged_in ? 'user-logged-in',
+    not root_path ? 'path-frontpage' : 'path-' ~ root_path|clean_class,
+    node_type ? 'page-node-type-' ~ node_type|clean_class,
+    db_offline ? 'db-offline',
+    'nexus-dark-theme',
+  ]
+%}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+  </head>
+  <body{{ attributes.addClass(body_classes) }}>
+    {# Top glowing neon laser bar #}
+    <div class="laser-line-top" aria-hidden="true"></div>
+
+    {# Ambient interactive mouse-reactive gradient mesh and floating blobs #}
+    <div class="nexus-ambient-layer" aria-hidden="true">
+      <div class="gradient-blob blob-cyan"></div>
+      <div class="gradient-blob blob-violet"></div>
+      <div class="gradient-blob blob-indigo"></div>
+      <div class="gradient-blob blob-emerald"></div>
+      <div class="cursor-spotlight"></div>
+    </div>
+
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      {{ 'Skip to main content'|t }}
+    </a>
+
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
+</html>
+

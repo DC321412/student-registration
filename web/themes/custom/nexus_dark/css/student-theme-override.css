@@ -1,0 +1,246 @@
+/**
+ * @file
+ * Dark futuristic overrides for the Student Registration module templates and forms.
+ */
+
+/* Override module root tokens in dark theme */
+:root {
+  --student-primary: #00f2fe;
+  --student-primary-hover: #38bdf8;
+  --student-accent: #8b5cf6;
+  --student-bg-light: #060913;
+  --student-border: rgba(255, 255, 255, 0.08);
+  --student-text: #f8fafc;
+  --student-text-muted: #94a3b8;
+  --student-success: #10b981;
+  --student-success-bg: rgba(16, 185, 129, 0.12);
+  --student-radius: 16px;
+}
+
+/* Registration Form Card */
+.student-registration-wrapper {
+  max-width: 900px;
+  margin: 1.5rem auto 3rem;
+  padding: 0 1rem;
+}
+
+.student-card {
+  background: var(--nexus-bg-card) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid var(--nexus-border) !important;
+  border-radius: var(--nexus-radius-lg) !important;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 242, 254, 0.08) !important;
+  color: var(--nexus-text-main) !important;
+}
+
+.student-card-header {
+  background: linear-gradient(135deg, rgba(13, 20, 36, 0.95) 0%, rgba(22, 33, 62, 0.9) 100%) !important;
+  border-bottom: 1px solid var(--nexus-border) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.student-card-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--nexus-grad-cyber);
+}
+
+.student-badge-icon {
+  filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.4));
+}
+
+.student-form-intro h2 {
+  color: #ffffff !important;
+}
+
+.student-form-intro p {
+  color: var(--nexus-text-secondary) !important;
+}
+
+.student-card-body {
+  padding: 2.5rem 2.75rem !important;
+  background: transparent !important;
+}
+
+.form-section-title {
+  border-bottom: 1px solid var(--nexus-border) !important;
+  padding-bottom: 0.75rem !important;
+  margin: 2.25rem 0 1.5rem 0 !important;
+}
+
+.form-section-title h3 {
+  color: #ffffff !important;
+  font-size: 1.25rem !important;
+  margin: 0 !important;
+}
+
+.form-section-title .step-num {
+  background: var(--nexus-grad-cyber) !important;
+  color: #030712 !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.4) !important;
+}
+
+.student-privacy-notice {
+  background: rgba(0, 242, 254, 0.04);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  border-radius: var(--nexus-radius-sm);
+  padding: 0.85rem 1.25rem;
+  margin-top: 1.5rem;
+  color: var(--nexus-cyan);
+}
+
+/* File Upload Field */
+.image-widget-data {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed var(--nexus-border-light);
+  border-radius: var(--nexus-radius-sm);
+  padding: 1.25rem;
+}
+
+/* Student Profile Page (Node View) */
+.student-profile-page {
+  padding: 1rem 0 3rem;
+}
+
+.student-profile-hero {
+  background: linear-gradient(135deg, rgba(13, 20, 36, 0.95) 0%, rgba(22, 33, 62, 0.9) 100%) !important;
+  border: 1px solid var(--nexus-border) !important;
+  border-radius: var(--nexus-radius-lg) !important;
+  padding: 2.5rem !important;
+  margin-bottom: 2rem !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 242, 254, 0.1) !important;
+}
+
+.student-profile-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--nexus-grad-cyber);
+}
+
+.student-avatar-wrapper {
+  border: 3px solid var(--nexus-cyan) !important;
+  box-shadow: 0 0 25px rgba(0, 242, 254, 0.4) !important;
+  border-radius: 50% !important;
+  width: 100px !important;
+  height: 100px !important;
+  overflow: hidden !important;
+  background: #090e1a !important;
+}
+
+.student-avatar-fallback {
+  background: linear-gradient(135deg, #090e1a 0%, #1e293b 100%) !important;
+  color: var(--nexus-cyan) !important;
+  font-family: var(--nexus-font-mono) !important;
+  font-size: 2rem !important;
+  font-weight: 800 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.student-id-pill {
+  background: rgba(0, 242, 254, 0.1) !important;
+  border: 1px solid rgba(0, 242, 254, 0.3) !important;
+  color: var(--nexus-cyan) !important;
+  font-family: var(--nexus-font-mono) !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  padding: 0.25rem 0.75rem !important;
+  border-radius: 9999px !important;
+  display: inline-block !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.student-name {
+  color: #ffffff !important;
+  font-size: 2.2rem !important;
+  margin: 0 0 0.5rem 0 !important;
+}
+
+.student-tagline {
+  color: var(--nexus-text-muted) !important;
+}
+
+.detail-card {
+  background: var(--nexus-bg-card) !important;
+  border: 1px solid var(--nexus-border) !important;
+  border-radius: var(--nexus-radius-md) !important;
+  padding: 1.75rem !important;
+}
+
+.detail-card-header {
+  border-bottom: 1px solid var(--nexus-border) !important;
+  padding-bottom: 0.85rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.detail-card-header h3 {
+  color: #ffffff !important;
+  margin: 0 !important;
+}
+
+.detail-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  padding: 0.75rem 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.detail-item:last-child {
+  border-bottom: none !important;
+}
+
+.detail-label {
+  color: var(--nexus-text-muted) !important;
+}
+
+.detail-value {
+  color: #ffffff !important;
+}
+
+.contact-link {
+  color: var(--nexus-cyan) !important;
+}
+
+.contact-link:hover {
+  text-decoration: underline !important;
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4) !important;
+}
+
+.btn-student-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  padding: 0.75rem 1.5rem !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid var(--nexus-border) !important;
+  border-radius: var(--nexus-radius-full) !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: all var(--nexus-transition-fast) !important;
+}
+
+.btn-student-secondary:hover {
+  background: rgba(0, 242, 254, 0.1) !important;
+  border-color: var(--nexus-cyan) !important;
+  color: var(--nexus-cyan) !important;
+  transform: translateY(-2px) !important;
+}
+

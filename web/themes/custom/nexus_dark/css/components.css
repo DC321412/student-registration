@@ -1,0 +1,269 @@
+/**
+ * @file
+ * Reusable Components, Form Controls, Tables, and Directory Styling for Nexus Dark.
+ */
+
+/* Form Elements */
+.form-item,
+.js-form-item {
+  margin-bottom: 1.5rem;
+}
+
+label,
+.form-item label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--nexus-text-secondary);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.form-required::after {
+  content: ' *';
+  color: var(--nexus-cyan);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  background: var(--nexus-bg-input);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: all var(--nexus-transition-fast);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--nexus-cyan);
+  box-shadow: 0 0 18px rgba(0, 242, 254, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  background: rgba(13, 20, 36, 0.95);
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2300f2fe'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.15em;
+  padding-right: 2.75rem;
+}
+
+select option {
+  background: #090e1a;
+  color: #ffffff;
+}
+
+/* Form Buttons */
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+input[type="submit"],
+button[type="submit"],
+.button--primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.8rem;
+  background: var(--nexus-grad-cyber);
+  color: #030712 !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: var(--nexus-radius-full);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 242, 254, 0.3);
+  transition: all var(--nexus-transition-normal);
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover,
+.button--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 242, 254, 0.5);
+}
+
+/* Drupal Views & Tables (Student Directory) */
+.views-element-container {
+  width: 100%;
+}
+
+.views-exposed-form {
+  background: var(--nexus-bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1.25rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--nexus-bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+thead th {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--nexus-cyan);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--nexus-border);
+  text-align: left;
+}
+
+thead th a {
+  color: var(--nexus-cyan);
+  text-decoration: none;
+}
+
+tbody tr {
+  transition: background var(--nexus-transition-fast);
+}
+
+tbody tr:hover {
+  background: rgba(0, 242, 254, 0.04);
+}
+
+tbody td {
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--nexus-border);
+  color: var(--nexus-text-secondary);
+  font-size: 0.92rem;
+  vertical-align: middle;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody td a {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+tbody td a:hover {
+  color: var(--nexus-cyan);
+}
+
+/* Pagination */
+.pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2.5rem 0;
+}
+
+.pager__items {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pager__item a,
+.pager__item span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 0.6rem;
+  background: var(--nexus-bg-card);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
+  color: var(--nexus-text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--nexus-transition-fast);
+}
+
+.pager__item a:hover {
+  background: rgba(0, 242, 254, 0.1);
+  border-color: var(--nexus-cyan);
+  color: var(--nexus-cyan);
+}
+
+.pager__item--current span,
+.pager__item.is-active a {
+  background: var(--nexus-cyan);
+  color: #030712 !important;
+  border-color: var(--nexus-cyan);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.breadcrumb li {
+  font-size: 0.85rem;
+  color: var(--nexus-text-dim);
+}
+
+.breadcrumb li::after {
+  content: '/';
+  margin-left: 0.5rem;
+  color: var(--nexus-border-light);
+}
+
+.breadcrumb li:last-child::after {
+  content: '';
+}
+
+.breadcrumb a {
+  color: var(--nexus-text-muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--nexus-cyan);
+}
+

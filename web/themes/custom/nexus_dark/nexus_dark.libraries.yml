@@ -1,0 +1,29 @@
+global-styling:
+  version: 1.0
+  css:
+    base:
+      css/variables.css: {}
+      css/base.css: {}
+    component:
+      css/header.css: {}
+      css/footer.css: {}
+      css/components.css: {}
+      css/landing.css: {}
+      css/student-theme-override.css: {}
+  js:
+    js/navigation.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
+interactive-mesh:
+  version: 1.0
+  css:
+    theme:
+      css/interactive-mesh.css: {}
+  js:
+    js/interactive-mesh.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+

@@ -1,0 +1,216 @@
+/**
+ * @file
+ * Futuristic Footer styling for Nexus Dark theme.
+ */
+
+.nexus-footer {
+  position: relative;
+  background: #04060d;
+  border-top: 1px solid var(--nexus-border);
+  padding-top: 5rem;
+  padding-bottom: 2.5rem;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Glowing Top Border Accent */
+.nexus-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #00f2fe 30%, #8b5cf6 70%, transparent 100%);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+}
+
+.nexus-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+/* Brand Column */
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.footer-logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border: 1px solid rgba(0, 242, 254, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--nexus-cyan);
+}
+
+.footer-brand-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.footer-tagline {
+  color: var(--nexus-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 360px;
+  margin: 0;
+}
+
+.footer-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: var(--nexus-radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--nexus-emerald);
+  width: fit-content;
+}
+
+/* Footer Link Columns */
+.footer-links-col h4 {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footer-links-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--nexus-cyan);
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-nav-list li a {
+  color: var(--nexus-text-muted);
+  font-size: 0.88rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all var(--nexus-transition-fast);
+}
+
+.footer-nav-list li a:hover {
+  color: var(--nexus-cyan);
+  transform: translateX(4px);
+  text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+}
+
+/* Architecture Specs Tags in Col 4 */
+.footer-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  font-family: var(--nexus-font-mono);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--nexus-border);
+  border-radius: 6px;
+  color: var(--nexus-text-secondary);
+}
+
+.tech-tag:hover {
+  border-color: var(--nexus-cyan);
+  color: var(--nexus-cyan);
+}
+
+/* Footer Bottom Bar */
+.nexus-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.82rem;
+  color: var(--nexus-text-dim);
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-bottom-links a {
+  color: var(--nexus-text-dim);
+  text-decoration: none;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--nexus-cyan);
+}
+
+.footer-system-latency {
+  font-family: var(--nexus-font-mono);
+  color: var(--nexus-emerald);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1024px) {
+  .nexus-footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .nexus-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .nexus-footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+

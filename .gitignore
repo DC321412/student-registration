@@ -15,8 +15,11 @@
 # Ignore Drupal's file directory and SQLite database
 /web/sites/*/files/
 /web/sites/*/private/
-*.sqlite
-*.sqlite3
+/web/default/files/
+/web/default/
+*.sqlite*
+*.sqlite3*
+.ht.sqlite*
 
 # OS & IDE files
 .DS_Store

@@ -9,119 +9,204 @@
  * - departments: List of departments with student counts and filter links.
  */
 #}
-<div class="student-home-wrapper">
+<div class="nexus-landing-wrapper student-home-wrapper">
 
-  {# Hero Banner #}
-  <section class="home-hero-section">
-    <div class="home-hero-content">
-      <div class="home-hero-badge">
-        <span class="badge-dot"></span> {{ 'University Academic Portal • Academic Year 2026-2027'|t }}
+  {# 1. Futuristic Hero Section #}
+  <section class="nexus-hero home-hero-section" aria-label="{{ 'Hero Section'|t }}">
+    <div class="hero-pill-badge home-hero-badge">
+      <span class="pulse-dot badge-dot"></span>
+      <span>{{ 'Next-Gen Academic Portal • Academic Year 2026-2027'|t }}</span>
+    </div>
+
+    <h1 class="hero-title home-hero-title">
+      {{ 'Decentralized Student'|t }} <span class="gradient-text highlight-text">{{ 'Registration OS'|t }}</span>
+    </h1>
+
+    <p class="hero-subtitle home-hero-subtitle">
+      {{ 'Streamline university admissions with high-speed Form API validation, dynamic views filtering, and intelligent academic taxonomy management in one unified portal.'|t }}
+    </p>
+
+    <div class="hero-actions home-hero-actions">
+      <a href="{{ path('student_registration.register') }}" class="nexus-btn-primary btn-hero-primary">
+        🎓 {{ 'Register New Student'|t }}
+      </a>
+      <a href="/students" class="nexus-btn-secondary btn-hero-secondary">
+        📋 {{ 'Explore Student Directory'|t }}
+      </a>
+      <a href="#features" class="nexus-btn-secondary">
+        ⚡ {{ 'System Highlights'|t }}
+      </a>
+    </div>
+
+    {# Interactive Holographic Telemetry Preview Card #}
+    <div class="hero-hologram-preview">
+      <div class="preview-header">
+        <div class="terminal-dots">
+          <span class="terminal-dot dot-red"></span>
+          <span class="terminal-dot dot-yellow"></span>
+          <span class="terminal-dot dot-green"></span>
+        </div>
+        <span class="preview-title">NEXUS // LIVE ACADEMIC CLUSTER TELEMETRY</span>
+        <span class="tech-tag" style="font-size: 0.7rem; color: var(--nexus-emerald);">● ACTIVE</span>
       </div>
-      <h1 class="home-hero-title">
-        {{ 'Student Registration'|t }} <span class="highlight-text">{{ 'Management System'|t }}</span>
-      </h1>
-      <p class="home-hero-subtitle">
-        {{ 'Welcome to the centralized university registration portal. Easily register new students with our multi-section Form API, browse the official student directory, and manage academic records.'|t }}
-      </p>
 
-      <div class="home-hero-actions">
-        <a href="{{ path('student_registration.register') }}" class="btn-hero-primary">
-          🎓 {{ 'Register New Student'|t }}
-        </a>
-        <a href="/students" class="btn-hero-secondary">
-          📋 {{ 'Explore Student Directory'|t }}
-        </a>
+      <div class="preview-body-grid">
+        <div class="preview-stat-item">
+          <span class="preview-stat-label">{{ 'Enrolled Profiles'|t }}</span>
+          <span class="preview-stat-val">{{ stats.students }}</span>
+        </div>
+        <div class="preview-stat-item">
+          <span class="preview-stat-label">{{ 'Academic Facets'|t }}</span>
+          <span class="preview-stat-val">{{ stats.departments }} {{ 'Depts'|t }} • {{ stats.courses }} {{ 'Courses'|t }}</span>
+        </div>
+        <div class="preview-stat-item">
+          <span class="preview-stat-label">{{ 'API Core Latency'|t }}</span>
+          <span class="preview-stat-val" style="color: var(--nexus-cyan);">14ms (99.98%)</span>
+        </div>
       </div>
     </div>
   </section>
 
-  {# Live Statistics Bar #}
-  <section class="home-stats-section">
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon">👥</div>
-        <div class="stat-info">
-          <span class="stat-number">{{ stats.students }}</span>
-          <span class="stat-label">{{ 'Enrolled Students'|t }}</span>
+  {# 2. Live Statistics Section #}
+  <section class="nexus-stats-section home-stats-section" aria-label="{{ 'Statistics'|t }}">
+    <div class="nexus-stats-grid stats-grid">
+      <div class="nexus-stat-card stat-card">
+        <div class="stat-icon-wrapper stat-icon">👥</div>
+        <div class="stat-meta stat-info">
+          <span class="stat-number-val stat-number">{{ stats.students }}</span>
+          <span class="stat-label-text stat-label">{{ 'Enrolled Students'|t }}</span>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon">🏛️</div>
-        <div class="stat-info">
-          <span class="stat-number">{{ stats.departments }}</span>
-          <span class="stat-label">{{ 'Academic Departments'|t }}</span>
+
+      <div class="nexus-stat-card stat-card">
+        <div class="stat-icon-wrapper icon-purple stat-icon">🏛️</div>
+        <div class="stat-meta stat-info">
+          <span class="stat-number-val stat-number">{{ stats.departments }}</span>
+          <span class="stat-label-text stat-label">{{ 'Academic Departments'|t }}</span>
         </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon">📚</div>
-        <div class="stat-info">
-          <span class="stat-number">{{ stats.courses }}</span>
-          <span class="stat-label">{{ 'Specialized Courses'|t }}</span>
+
+      <div class="nexus-stat-card stat-card">
+        <div class="stat-icon-wrapper stat-icon">📚</div>
+        <div class="stat-meta stat-info">
+          <span class="stat-number-val stat-number">{{ stats.courses }}</span>
+          <span class="stat-label-text stat-label">{{ 'Specialized Courses'|t }}</span>
         </div>
       </div>
-      <div class="stat-card stat-status-card">
-        <div class="stat-icon">⚡</div>
-        <div class="stat-info">
-          <span class="stat-number text-success">{{ 'Active'|t }}</span>
-          <span class="stat-label">{{ 'Registration Portal Status'|t }}</span>
+
+      <div class="nexus-stat-card stat-card stat-status-card">
+        <div class="stat-icon-wrapper icon-emerald stat-icon">⚡</div>
+        <div class="stat-meta stat-info">
+          <span class="stat-number-val stat-number" style="color: var(--nexus-emerald);">{{ 'Active'|t }}</span>
+          <span class="stat-label-text stat-label">{{ 'Portal Health Status'|t }}</span>
         </div>
       </div>
     </div>
   </section>
 
-  {# Core Features Grid #}
-  <section class="home-features-section">
-    <div class="section-heading-center">
-      <span class="sub-badge">{{ 'System Highlights'|t }}</span>
-      <h2>{{ 'Key Features & Architecture'|t }}</h2>
-      <p>{{ 'Built with modern Drupal 11 architecture, Form API, taxonomy vocabularies, and views.'|t }}</p>
+  {# 3. Interactive Student Lifecycle / Workflow Section #}
+  <section class="workflow-section" id="workflow" aria-label="{{ 'Workflow'|t }}">
+    <div class="section-head">
+      <span class="section-tag sub-badge">{{ 'Streamlined Process'|t }}</span>
+      <h2>{{ 'Automated Student Lifecycle'|t }}</h2>
+      <p>{{ 'From initial enrollment to verified directory listing, every step is optimized for security and speed.'|t }}</p>
     </div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon-box">📝</div>
-        <h3>{{ 'Form API Registration'|t }}</h3>
-        <p>{{ 'Structured multi-step form with required field validation, email uniqueness checking, phone formatting, and secure image upload restrictions.'|t }}</p>
-        <a href="{{ path('student_registration.register') }}" class="feature-link">{{ 'Open Registration Form →'|t }}</a>
+    <div class="workflow-grid">
+      <div class="workflow-card">
+        <span class="workflow-step-num">STAGE 01</span>
+        <h3>{{ 'Profile Intake'|t }}</h3>
+        <p>{{ 'Prospective student submits contact credentials, academic preferences, and optional profile portrait via Form API.'|t }}</p>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon-box">🔍</div>
-        <h3>{{ 'Filterable Views Directory'|t }}</h3>
-        <p>{{ 'Dynamic Drupal Views directory equipped with real-time department and course exposed dropdown filters, column sorting, and pagination.'|t }}</p>
-        <a href="/students" class="feature-link">{{ 'Browse Student Directory →'|t }}</a>
+      <div class="workflow-card">
+        <span class="workflow-step-num">STAGE 02</span>
+        <h3>{{ 'Strict Validation'|t }}</h3>
+        <p>{{ 'Real-time email uniqueness check, international phone formatting, and secure image upload verification.'|t }}</p>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon-box">🏷️</div>
-        <h3>{{ 'Taxonomy Integration'|t }}</h3>
+      <div class="workflow-card">
+        <span class="workflow-step-num">STAGE 03</span>
+        <h3>{{ 'Taxonomy Tagging'|t }}</h3>
+        <p>{{ 'System dynamically references official Academic Department and Course vocabularies for structural indexing.'|t }}</p>
+      </div>
+
+      <div class="workflow-card">
+        <span class="workflow-step-num">STAGE 04</span>
+        <h3>{{ 'Directory Exposure'|t }}</h3>
+        <p>{{ 'Student record is indexed into filterable Views and allocated a clean, SEO-friendly Pathauto URL.'|t }}</p>
+      </div>
+    </div>
+  </section>
+
+  {# 4. Core Features Grid #}
+  <section class="features-section home-features-section" id="features" aria-label="{{ 'Features'|t }}">
+    <div class="section-head section-heading-center">
+      <span class="section-tag sub-badge">{{ 'System Architecture'|t }}</span>
+      <h2>{{ 'Engineered for Scale & Precision'|t }}</h2>
+      <p>{{ 'Built with modern Drupal 11 architecture, Form API, taxonomy vocabularies, and dynamic views.'|t }}</p>
+    </div>
+
+    <div class="nexus-features-grid features-grid">
+      <div class="nexus-feature-card feature-card">
+        <div class="feature-top-icon feature-icon-box">📝</div>
+        <h3>{{ 'Form API Registration Engine'|t }}</h3>
+        <p>{{ 'Structured multi-section form with required field validation, email uniqueness checking, phone formatting, and secure image upload restrictions.'|t }}</p>
+        <a href="{{ path('student_registration.register') }}" class="feature-cta-link feature-link">
+          <span>{{ 'Open Registration Terminal'|t }}</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="nexus-feature-card feature-card">
+        <div class="feature-top-icon feature-icon-box">🔍</div>
+        <h3>{{ 'Dynamic Views Directory'|t }}</h3>
+        <p>{{ 'Interactive Drupal Views directory equipped with real-time department and course exposed dropdown filters, column sorting, and pagination.'|t }}</p>
+        <a href="/students" class="feature-cta-link feature-link">
+          <span>{{ 'Browse Student Directory'|t }}</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="nexus-feature-card feature-card">
+        <div class="feature-top-icon feature-icon-box">🏷️</div>
+        <h3>{{ 'Dual Taxonomy Vocabularies'|t }}</h3>
         <p>{{ 'Structured taxonomy vocabularies for Departments and Courses seamlessly categorized and referenced across all student profiles.'|t }}</p>
-        <a href="/students" class="feature-link">{{ 'View Categorized Students →'|t }}</a>
+        <a href="#departments" class="feature-cta-link feature-link">
+          <span>{{ 'View Department Catalog'|t }}</span>
+          <span>→</span>
+        </a>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-icon-box">🛡️</div>
-        <h3>{{ 'Security & Permissions'|t }}</h3>
+      <div class="nexus-feature-card feature-card">
+        <div class="feature-top-icon feature-icon-box">🛡️</div>
+        <h3>{{ 'Role-Based Access & SEO URLs'|t }}</h3>
         <p>{{ 'Role-based access control protecting student records, combined with Pathauto SEO-friendly clean URLs for all student profiles.'|t }}</p>
-        <a href="/admin/content" class="feature-link">{{ 'Administer Records →'|t }}</a>
+        <a href="/admin/content" class="feature-cta-link feature-link">
+          <span>{{ 'Administer Records'|t }}</span>
+          <span>→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  {# Recently Registered Students #}
+  {# 5. Recently Registered Students Showcase #}
   {% if recent_students is not empty %}
-    <section class="home-recent-section">
-      <div class="section-heading-between">
+    <section class="nexus-recent-section home-recent-section" id="students" aria-label="{{ 'Recent Students'|t }}">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; flex-wrap: wrap; gap: 1rem;">
         <div>
-          <span class="sub-badge">{{ 'Live Updates'|t }}</span>
-          <h2>{{ 'Recently Registered Students'|t }}</h2>
+          <span class="section-tag sub-badge">{{ 'Live Feed'|t }}</span>
+          <h2 style="margin: 0;">{{ 'Recently Registered Students'|t }}</h2>
         </div>
-        <a href="/students" class="view-all-link">{{ 'View Full Directory ({{ stats.students }}) →'|t }}</a>
+        <a href="/students" class="feature-cta-link view-all-link" style="font-size: 0.95rem;">
+          <span>{{ 'View Full Directory ({{ stats.students }})'|t }}</span>
+          <span>→</span>
+        </a>
       </div>
 
-      <div class="recent-students-grid">
+      <div class="recent-students-grid recent-students-grid">
         {% for student in recent_students %}
-          <div class="recent-student-card">
+          <div class="recent-student-card recent-student-card">
             <div class="recent-card-top">
               <div class="recent-avatar">
                 {% if student.photo_url %}
@@ -131,17 +216,15 @@
                 {% endif %}
               </div>
               <div class="recent-meta">
-                <h4 class="recent-name">
+                <h4 class="recent-name" style="margin: 0 0 0.2rem 0;">
                   <a href="{{ student.url }}">{{ student.full_name }}</a>
                 </h4>
-                <span class="recent-date">Enrolled {{ student.date }}</span>
+                <span class="recent-date">{{ student.date }}</span>
               </div>
             </div>
 
             <div class="recent-card-body">
-              <div class="recent-badge-row">
-                <span class="badge {{ student.department_badge_class }}">{{ student.department }}</span>
-              </div>
+              <span class="badge {{ student.department_badge_class }}">{{ student.department }}</span>
               <p class="recent-course">{{ student.course }}</p>
             </div>
 
@@ -156,13 +239,13 @@
     </section>
   {% endif %}
 
-  {# Department Quick Filter Section #}
+  {# 6. Academic Departments Grid #}
   {% if departments is not empty %}
-    <section class="home-departments-section">
-      <div class="section-heading-center">
-        <span class="sub-badge">{{ 'Academic Programs'|t }}</span>
+    <section class="nexus-departments-section home-departments-section" id="departments" aria-label="{{ 'Departments'|t }}">
+      <div class="section-head section-heading-center">
+        <span class="section-tag sub-badge">{{ 'Academic Programs'|t }}</span>
         <h2>{{ 'Explore by Department'|t }}</h2>
-        <p>{{ 'Quickly access students enrolled in each academic faculty.'|t }}</p>
+        <p>{{ 'Filter and inspect registered students across academic faculties and divisions.'|t }}</p>
       </div>
 
       <div class="departments-grid">
@@ -175,7 +258,9 @@
               </div>
               <p class="dept-desc">{{ dep.description|striptags }}</p>
               <div class="dept-footer">
-                <span class="dept-count"><strong>{{ dep.student_count }}</strong> {{ 'Students Enrolled'|t }}</span>
+                <span class="dept-count">
+                  <strong style="color: var(--nexus-cyan);">{{ dep.student_count }}</strong> {{ 'Enrolled Students'|t }}
+                </span>
                 <span class="dept-arrow">→</span>
               </div>
             </div>
@@ -185,8 +270,8 @@
     </section>
   {% endif %}
 
-  {# Enrollment Call to Action Card #}
-  <section class="home-cta-section">
+  {# 7. High-Impact Call to Action Banner #}
+  <section class="home-cta-section" aria-label="{{ 'Call to Action'|t }}">
     <div class="cta-inner-card">
       <div class="cta-content">
         <h2>{{ 'Ready to Enroll a New Student?'|t }}</h2>
@@ -201,4 +286,3 @@
   </section>
 
 </div>
-

@@ -1,0 +1,665 @@
+/**
+ * @file
+ * Futuristic Landing Page styling for Nexus Dark theme.
+ */
+
+/* Landing Page Wrapper */
+.nexus-landing-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5.5rem;
+  padding-bottom: 2rem;
+}
+
+/* 1. Hero Section */
+.nexus-hero {
+  position: relative;
+  padding: 4.5rem 0 3rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1.1rem;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+  border-radius: var(--nexus-radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--nexus-cyan);
+  margin-bottom: 1.75rem;
+  animation: badge-float 4s ease-in-out infinite alternate;
+}
+
+@keyframes badge-float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6.5vw, 4.4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 950px;
+  margin: 0 auto 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--nexus-text-secondary);
+  max-width: 720px;
+  line-height: 1.6;
+  margin: 0 auto 2.5rem;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+/* Floating Hero Interactive Preview Card */
+.hero-hologram-preview {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  background: rgba(13, 20, 36, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  border-radius: var(--nexus-radius-lg);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 242, 254, 0.15);
+  padding: 1.75rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-hologram-preview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--nexus-grad-cyber);
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--nexus-border);
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.preview-title {
+  font-family: var(--nexus-font-mono);
+  font-size: 0.82rem;
+  color: var(--nexus-text-muted);
+}
+
+.preview-body-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  text-align: left;
+}
+
+.preview-stat-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.preview-stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--nexus-text-dim);
+}
+
+.preview-stat-val {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  font-family: var(--nexus-font-mono);
+}
+
+/* 2. Live Statistics Section */
+.nexus-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.nexus-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  background: var(--nexus-bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  box-shadow: var(--nexus-shadow-sm);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--nexus-transition-normal);
+}
+
+.nexus-stat-card:hover {
+  border-color: var(--nexus-border-glow);
+  box-shadow: var(--nexus-shadow-lg), 0 0 25px rgba(0, 242, 254, 0.15);
+}
+
+.stat-icon-wrapper {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+}
+
+.stat-icon-wrapper.icon-purple {
+  background: rgba(139, 92, 246, 0.08);
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.15);
+}
+
+.stat-icon-wrapper.icon-emerald {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+}
+
+.stat-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number-val {
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #ffffff;
+  font-family: var(--nexus-font-mono);
+}
+
+.stat-label-text {
+  font-size: 0.85rem;
+  color: var(--nexus-text-muted);
+  font-weight: 500;
+}
+
+/* 3. Workflow Steps Section */
+.workflow-section {
+  text-align: center;
+}
+
+.section-head {
+  max-width: 650px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--nexus-cyan);
+  margin-bottom: 0.6rem;
+}
+
+.section-head h2 {
+  margin-bottom: 0.85rem;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  position: relative;
+}
+
+.workflow-card {
+  padding: 2rem 1.5rem;
+  background: var(--nexus-bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--nexus-transition-normal);
+}
+
+.workflow-card:hover {
+  border-color: var(--nexus-border-glow);
+  transform: translateY(-4px);
+}
+
+.workflow-step-num {
+  font-family: var(--nexus-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--nexus-cyan);
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  width: fit-content;
+  margin-bottom: 1.25rem;
+}
+
+.workflow-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+
+.workflow-card p {
+  font-size: 0.88rem;
+  color: var(--nexus-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* 4. Core Features Grid */
+.nexus-features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.nexus-feature-card {
+  padding: 2.5rem;
+  background: var(--nexus-bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-lg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--nexus-transition-normal);
+}
+
+.nexus-feature-card:hover {
+  border-color: var(--nexus-border-glow);
+  box-shadow: 0 15px 35px -10px rgba(0, 242, 254, 0.15);
+}
+
+.feature-top-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  box-shadow: 0 0 20px rgba(0, 242, 254, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.nexus-feature-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.nexus-feature-card p {
+  color: var(--nexus-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.feature-cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--nexus-cyan);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all var(--nexus-transition-fast);
+}
+
+.feature-cta-link:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+/* 5. Live Recent Students Grid */
+.recent-students-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.recent-student-card {
+  padding: 1.5rem;
+  background: var(--nexus-bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--nexus-transition-normal);
+}
+
+.recent-student-card:hover {
+  border-color: var(--nexus-border-glow);
+  box-shadow: 0 10px 30px -5px rgba(0, 242, 254, 0.15);
+}
+
+.recent-card-top {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.recent-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--nexus-cyan);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #090e1a;
+  flex-shrink: 0;
+}
+
+.recent-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-text {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--nexus-cyan);
+  font-family: var(--nexus-font-mono);
+}
+
+.recent-name a {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.recent-date {
+  font-size: 0.75rem;
+  color: var(--nexus-text-dim);
+}
+
+.recent-card-body {
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.recent-card-body .badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  color: var(--nexus-cyan);
+  margin-bottom: 0.5rem;
+}
+
+.recent-course {
+  font-size: 0.85rem;
+  color: var(--nexus-text-muted);
+  margin: 0;
+}
+
+.card-btn-view {
+  display: block;
+  text-align: center;
+  padding: 0.6rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-sm);
+  color: var(--nexus-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--nexus-transition-fast);
+}
+
+.card-btn-view:hover {
+  background: rgba(0, 242, 254, 0.1);
+  border-color: var(--nexus-cyan);
+  color: var(--nexus-cyan);
+}
+
+/* 6. Academic Departments Grid */
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.department-card-link {
+  text-decoration: none;
+}
+
+.dept-card {
+  padding: 1.75rem;
+  background: var(--nexus-bg-card);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--nexus-border);
+  border-radius: var(--nexus-radius-md);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--nexus-transition-normal);
+}
+
+.dept-card:hover {
+  border-color: var(--nexus-border-glow);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.12);
+}
+
+.dept-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.dept-icon {
+  font-size: 1.5rem;
+}
+
+.dept-header h4 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.dept-desc {
+  font-size: 0.88rem;
+  color: var(--nexus-text-muted);
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
+}
+
+.dept-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--nexus-border);
+  padding-top: 0.85rem;
+  font-size: 0.82rem;
+  color: var(--nexus-text-secondary);
+}
+
+.dept-arrow {
+  color: var(--nexus-cyan);
+  font-weight: 700;
+  transition: transform var(--nexus-transition-fast);
+}
+
+.dept-card:hover .dept-arrow {
+  transform: translateX(4px);
+}
+
+/* 7. Call To Action (CTA) Section */
+.home-cta-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-inner-card {
+  background: linear-gradient(135deg, rgba(13, 20, 36, 0.95) 0%, rgba(22, 33, 62, 0.9) 100%);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(0, 242, 254, 0.35);
+  box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 242, 254, 0.2);
+  border-radius: var(--nexus-radius-lg);
+  padding: 4rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-inner-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.2) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.cta-content h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.cta-content p {
+  color: var(--nexus-text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0;
+}
+
+.btn-cta-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 2.2rem;
+  background: #ffffff;
+  color: #030712 !important;
+  font-weight: 800;
+  font-size: 1rem;
+  border-radius: var(--nexus-radius-full);
+  box-shadow: 0 4px 25px rgba(255, 255, 255, 0.3), 0 0 35px rgba(0, 242, 254, 0.4);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--nexus-transition-normal);
+}
+
+.btn-cta-white:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 35px rgba(255, 255, 255, 0.4), 0 0 50px rgba(0, 242, 254, 0.6);
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .nexus-stats-grid,
+  .recent-students-grid,
+  .workflow-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .departments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cta-inner-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .nexus-stats-grid,
+  .recent-students-grid,
+  .workflow-grid,
+  .nexus-features-grid,
+  .departments-grid {
+    grid-template-columns: 1fr;
+  }
+  .preview-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions a {
+    width: 100%;
+  }
+}
+

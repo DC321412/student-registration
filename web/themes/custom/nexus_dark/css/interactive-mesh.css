@@ -1,0 +1,150 @@
+/**
+ * @file
+ * Interactive mouse-responsive gradient mesh, blobs, and ambient cyber background.
+ */
+
+/* Mesh Container Fixed Behind All Content */
+.nexus-ambient-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  contain: strict;
+}
+
+/* Cybernetic Grid Overlay */
+.nexus-ambient-layer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, #000 30%, transparent 100%);
+  opacity: 0.85;
+}
+
+/* Interactive Cursor Spotlight */
+.cursor-spotlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 600px;
+  margin-top: -300px;
+  margin-left: -300px;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, rgba(139, 92, 246, 0.05) 45%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: transform;
+}
+
+body:hover .cursor-spotlight {
+  opacity: 1;
+}
+
+/* Dynamic Gradient Blobs */
+.gradient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  will-change: transform;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+/* Blob 1: Electric Cyan */
+.blob-cyan {
+  width: 520px;
+  height: 520px;
+  top: 10%;
+  left: 15%;
+  background: radial-gradient(circle, rgba(0, 242, 254, 0.45) 0%, rgba(56, 189, 248, 0.15) 60%, transparent 80%);
+  animation: float-drift-1 22s ease-in-out infinite alternate;
+}
+
+/* Blob 2: Deep Violet / Cyber Purple */
+.blob-violet {
+  width: 620px;
+  height: 620px;
+  top: 35%;
+  right: 12%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.42) 0%, rgba(168, 85, 247, 0.12) 60%, transparent 80%);
+  animation: float-drift-2 26s ease-in-out infinite alternate;
+}
+
+/* Blob 3: Neon Indigo */
+.blob-indigo {
+  width: 580px;
+  height: 580px;
+  bottom: 10%;
+  left: 28%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, rgba(79, 70, 229, 0.1) 60%, transparent 80%);
+  animation: float-drift-3 28s ease-in-out infinite alternate;
+}
+
+/* Blob 4: Emerald / Aqua Accent */
+.blob-emerald {
+  width: 440px;
+  height: 440px;
+  top: 50%;
+  left: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.28) 0%, rgba(20, 184, 166, 0.08) 60%, transparent 80%);
+  animation: float-drift-4 20s ease-in-out infinite alternate;
+}
+
+/* Ambient Floating Keyframes */
+@keyframes float-drift-1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(60px, -40px, 0) scale(1.08); }
+  100% { transform: translate3d(-40px, 50px, 0) scale(0.95); }
+}
+
+@keyframes float-drift-2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-70px, 60px, 0) scale(1.12); }
+  100% { transform: translate3d(50px, -50px, 0) scale(0.92); }
+}
+
+@keyframes float-drift-3 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(50px, 50px, 0) scale(1.05); }
+  100% { transform: translate3d(-60px, -40px, 0) scale(0.96); }
+}
+
+@keyframes float-drift-4 {
+  0% { transform: translate3d(0, 0, 0) scale(0.95); }
+  50% { transform: translate3d(-40px, -50px, 0) scale(1.1); }
+  100% { transform: translate3d(50px, 40px, 0) scale(1); }
+}
+
+/* Top Subtle Laser Accent */
+.laser-line-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #00f2fe 30%, #8b5cf6 70%, transparent 100%);
+  z-index: 1001;
+  opacity: 0.8;
+  box-shadow: 0 0 10px rgba(0, 242, 254, 0.8), 0 0 20px rgba(139, 92, 246, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-blob {
+    animation: none !important;
+  }
+}
+
